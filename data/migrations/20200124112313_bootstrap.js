@@ -37,7 +37,7 @@ exports.up = function(knex) {
 
     })
     .createTable('Resc', tbl => { 
-        tbl.string('Resources', 128).notNullable().unique();
+        tbl.string('Resources', 128).notNullable();
         tbl.integer('Resource_id', 128)
         .unsigned()
         .notNullable()
