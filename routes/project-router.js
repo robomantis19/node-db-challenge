@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => { 
     Input.getProj()
-    console.log(Proj)
+    
     .then(proj => { 
         res.status(200).json(proj); 
     })
@@ -16,3 +16,5 @@ router.get('/', (req, res) => {
         res.status(500).json({errorMessage: "error getting project"})
     })
 })
+
+module.exports = router;
