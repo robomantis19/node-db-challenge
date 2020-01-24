@@ -5,10 +5,13 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('Resc').insert([
-        {Resources:'cleaning computer supplies', Resource_id: 1, name: 'disk cleaner'},
-        {Resources:'cleaning screen supplies', Resource_id: 2, name: 'screen cleaner'}, 
-        {Resources:'cleaning table supplies', Resource_id: 3, name: 'windex'},
-        {Resources:'cleaning floor supplies', Resource_id: 4, name: 'mop'}, 
+        {Description:'cleaning computer supplies',  name: 'disk cleaner'},
+        {Description:'cleaning screen supplies',  name: 'screen cleaner'}, 
+        {Description:'cleaning table supplies', name: 'windex'},
+        {Description:'cleaning floor supplies',  name: 'mop'}, 
+        {Description:'for cleaning floor',  name: 'trash can'}, 
+        {Description:'for tidying up desk',  name: 'file cabinet'}, 
+        
        
       ]);
     });
