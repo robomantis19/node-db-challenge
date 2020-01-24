@@ -40,15 +40,27 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+Relational Databases store related information. stored in rows and columns. Where a collection of rows is called a table. SQL manages databases. Optomized for writing queries
+and retrieving that information.
+
+
 - [ ] Why do tables need a `primary key`?
+
+To uniquely identify each row.
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+Foriegn key.
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+A relationship between two entities in A and B in which A row has multiple values for each
+value in row B.
+
 
 ## Minimum Viable Product
 
-Take the steps necessary to complete the project from scratch. Start by initializing your project with a `package.json` and go from there.
+Take the steps necessary to complete the project from scratch. Start by initializing your project with a `package.json` and go froms there.
 
 Complete the following tasks:
 
