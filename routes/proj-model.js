@@ -5,11 +5,42 @@ module.exports = {
     getAll, 
     getResc, 
     getTasks, 
+    addProj,
+    addTask, 
+    addResc, 
 }
 
 function getProj(){ 
     return db('Proj')
 }
+function addProj(input){
+    return db('Proj')
+    .insert(input)
+    .then(([id]) => { 
+        return getAll(id)
+    });
+}
+
+function addTask(input){
+    return db('Tasks')
+    .insert(input)
+    .then(([id]) => { 
+        return getAll(id)
+    });
+}
+function addResc(input){
+    return db('Resc')
+    .insert(input)
+    .then(([id]) => { 
+        return findById(id)
+    });
+}
+function findById(id){
+    return db('Resc')
+    .where({id})
+    .first() 
+}
+
 
 
 function getAll(id) {
@@ -20,6 +51,7 @@ function getAll(id) {
     // .select('PR.task_id', 'P.Tasks', 'P.name', 'P.description', 'R.Resources', 'P.completed')
     .select('P.name', 'P.description', 'P.completed', 'T.description', 'T.notes', 'T.completed')
     .where('T.project_id', id)
+    .first();
 
 }
 function getTasks(){

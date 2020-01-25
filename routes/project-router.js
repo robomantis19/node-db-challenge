@@ -49,4 +49,26 @@ router.get('/all/:id', (req, res) => {
     })
 })
 
+router.post('/proj', (req, res) => { 
+    Input.addProj(req.body)
+    .then(proj => {
+        res.status(200).json(proj)
+    })
+    .catch(input => { 
+        console.log('post error: ', input)
+        res.status(500).json({inputMessage: 'post to project did not work'})
+    })
+})
+router.post('/tasks', (req, res) => { 
+    Input.addTask(req.body)
+    .then(proj => {
+        res.status(200).json(proj)
+    })
+    .catch(input => { 
+        console.log('post error: ', input)
+        res.status(500).json({inputMessage: 'post to project did not work'})
+    })
+})
+
+
 module.exports = router;
