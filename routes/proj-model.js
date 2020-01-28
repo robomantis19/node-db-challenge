@@ -8,6 +8,7 @@ module.exports = {
     addProj,
     addTask, 
     addResc, 
+    getPR, 
 }
 
 function getProj(){ 
@@ -31,28 +32,30 @@ function addTask(input){
 function addResc(input){
     return db('Resc')
     .insert(input)
-    .then(([id]) => { 
-        return findById(id)
-    });
 }
-function findById(id){
-    return db('Resc')
-    .where({id})
-    .first() 
-}
+
 
 
 
 function getAll(id) {
     return db('Proj as P')
     .join('Tasks as T',  'T.project_id', 'P.id')
-    // .join('Project_Resources as PR',  'PR.project_id', 'P.id')
+    .join('Resc as R')
+    .join('Project_Resources as PR',  'PR.resource_id', 'R.id')
     // .join('Proj as P', 'P.project_id', 'R.Resource_id')
     // .select('PR.task_id', 'P.Tasks', 'P.name', 'P.description', 'R.Resources', 'P.completed')
-    .select('P.name', 'P.description', 'P.completed', 'T.description', 'T.notes', 'T.completed')
+    .select('P.name as Project_name', 'P.description as Project_description', 'P.completed', 'T.description as Task_description', 'T.notes as Task_notes', 'T.completed','R.name as Resource_name', 'R.description as Resource_description')
     .where('T.project_id', id)
-    .first();
+    .where('PR.project_id', id)
+    
 
+}
+function getPR(id){
+    return db('Project_Resources as PR')
+    .join('Resc as R', 'PR.resource_id', 'R.id')
+    .join('Proj as P', 'PR.project_id', 'P.id')
+    .select('PR.id', 'P.name', 'P.description', 'P.completed', 'R.name', 'R.description')
+    .where('PR.project_id', id)
 }
 function getTasks(){
     return db('Tasks')

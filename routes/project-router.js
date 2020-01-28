@@ -41,11 +41,22 @@ router.get('/resc', (req, res) => {
 router.get('/all/:id', (req, res) => { 
     Input.getAll(req.params.id)
     .then(proj => { 
+        
         res.status(200).json(proj);
     })
     .catch(proj => { 
         console.log(proj);
-        res.status(500).json({errorMessage: 'error getting all data'})
+        res.status(500).json({errorMessage: 'error getting all data', error: proj.message})
+    })
+})
+router.get('/PR/:id', (req, res) => { 
+    Input.getPR(req.params.id)
+    .then(proj => { 
+        res.status(200).json(proj);
+    })
+    .catch(proj => { 
+        console.log(proj);
+        res.status(500).json({errorMessage: 'error getting all PR data'})
     })
 })
 
@@ -67,6 +78,18 @@ router.post('/tasks', (req, res) => {
     .catch(input => { 
         console.log('post error: ', input)
         res.status(500).json({inputMessage: 'post to project did not work'})
+    })
+})
+
+router.post('/resc', (req, res) => { 
+    Input.addResc(req.body)
+    
+    .then(proj => { 
+        res.status(200).json(proj); 
+    })
+    .catch(proj => { 
+        console.log(proj); 
+        res.status(500).json({errorMessage: "error posting resc"})
     })
 })
 
